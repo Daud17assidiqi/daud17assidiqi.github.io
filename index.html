@@ -181,9 +181,16 @@
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbxPF4QraawTxjKw9-egxg-T43K9Q7_bqlwr7Pwok0NblCYkfXJfm0b4iK_JdmG5vjkPhg/exec'
       const form = document.forms['daud-contact-form']
-    
+      const btnKirim = document.querySelector('.btn-kirim')
+      const btnLoading = document.querySelector('.btn-loading')
+      const Alert = document.querySelector('.alert')
+      
       form.addEventListener('submit', e => {
         e.preventDefault()
+        //proses loading
+        //tampilkan tombol loading hilangkan tombol submit
+        btnLoading.classList.toggle('d-none')
+        btnKirim.classList.toggle('d-none')
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
